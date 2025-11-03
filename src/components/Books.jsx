@@ -1,23 +1,31 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { AddToCart, fetchBooks } from '../slices/Books'
+import { AddToCart, CountCart, fetchBooks } from '../slices/Books'
 
 const Books = () => {
     const dispatch = useDispatch()
     const book = useSelector((state) => state.books.books)
-
+    const cartCount = useSelector((state) => state.books.cartCount);
+    
     useEffect(() => {
         dispatch(fetchBooks('soyinka'))
+        dispatch(CountCart());
         
     }, [dispatch])
   return (
     <div>
-        <h1>Books Component</h1>
+        <div className='float-end p-2'>
+        <i className="fas fa-shopping-cart  text-2xl" >
+        </i>
+        <b className='bg-blue-500 text-white rounded-4xl p-1'>({cartCount})</b>
+        </div>
+        <div className="clear-both"></div>
+        {/* <h1>Books Component</h1> */}
         <div className='flex flex-wrap justify-between space-y-1'>
 
         {
             book.map((book) => (
-                <div key={book.id} className='p-3  w-1/3'>
+                <div key={book.id} className='p-3  w-1/4'>
                     <div className='p-3 border'>
 
                         <h2>{book.volumeInfo.title}</h2>
