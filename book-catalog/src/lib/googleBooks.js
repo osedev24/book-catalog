@@ -1,5 +1,4 @@
-// Thin Google Books client helper.
-// Uses Vite env var VITE_GOOGLE_BOOKS_API_KEY (do NOT commit your key to the repo).
+
 export async function searchBooks(query, maxResults = 12) {
   if (!query || !query.trim()) return { items: [] };
 
