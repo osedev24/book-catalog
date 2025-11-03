@@ -1,11 +1,15 @@
 // Sample books data used by the RecommendedSection
+import book1 from '../../assets/book1.jpeg';
+import book2 from '../../assets/book2.jpeg';
+import book3 from '../../assets/book3.jpeg';
+import book4 from '../../assets/book4.jpeg';
 const books = [
   {
     id: "b1",
     title: "Introduction to Algorithms",
     author: "Thomas H. Cormen",
     price: 79.99,
-    cover: "https://via.placeholder.com/160x240?text=Algorithms",
+    cover: book1,
     description:
       "Comprehensive introduction to modern algorithm design and analysis.",
     isbn: "9780262033848",
@@ -15,7 +19,7 @@ const books = [
     title: "Clean Code",
     author: "Robert C. Martin",
     price: 34.5,
-    cover: "https://via.placeholder.com/160x240?text=Clean+Code",
+    cover: book2,
     description:
       "A handbook of agile software craftsmanship and best practices for writing cleaner code.",
     isbn: "9780132350884",
@@ -25,7 +29,7 @@ const books = [
     title: "Database System Concepts",
     author: "Abraham Silberschatz",
     price: 69.0,
-    cover: "https://via.placeholder.com/160x240?text=Databases",
+    cover: book3,
     description:
       "Thorough introduction to database systems and design fundamentals.",
     isbn: "9780073523323",
@@ -35,7 +39,7 @@ const books = [
     title: "Artificial Intelligence: A Modern Approach",
     author: "Stuart Russell, Peter Norvig",
     price: 89.99,
-    cover: "https://via.placeholder.com/160x240?text=AI",
+    cover: book4,
     description:
       "The leading textbook for learning the fundamentals and applications of AI.",
     isbn: "9780136042594",
