@@ -5,12 +5,15 @@ import axios from "axios";
 const apiKey = import.meta.env.VITE_APP_API_KEY;
 export const fetchBooks = createAsyncThunk(
   'books/fetchBooks',
-  async (query) => {
+  async ({ query, startIndex = 0 }, { rejectWithValue }) => {
     const res = await axios.get(
-      `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=10&key=AIzaSyAXVzoOrbcKnSAqhzXgQ78sPI0Y8PEkw48`
+      `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&startIndex=${startIndex}&maxResults=10&key=${apiKey}`
     )
-    return  res.data.items;
-
+    return {
+        items: res.data.items || [],
+        query,
+        startIndex,
+      };
   }
 )
 
@@ -19,8 +22,13 @@ const bookSlice = createSlice({
   initialState: {
     books: [],
     cartCount: 0,
+    loading: false,
+    error: null,
+    hasMore: true,       // whether more pages exist
+    pageSize: 10,     // number of items per page
   },
   reducers: {
+
       AddToCart: (state, action) => {
           const Cart = localStorage.getItem('booksCart') ? JSON.parse(localStorage.getItem('booksCart')) : [];
           //Check if book already in cart
@@ -37,15 +45,32 @@ const bookSlice = createSlice({
       CountCart: (state, action) => {
           const Cart = localStorage.getItem('booksCart') ? JSON.parse(localStorage.getItem('booksCart')) : [];
           state.cartCount = Cart.length;
-      }
+      },
+      resetBooksForQuery: (state, action) => {
+      state.query = action.payload;
+      state.books = [];
+      state.loading = false;
+      state.error = null;
+      state.hasMore = true;
+    },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchBooks.fulfilled, (state, action) => {
-            state.books = action.payload;
-        });
+        state.loading = false;
+        const { items } = action.payload;
+        // append items
+        state.books = [...state.books, ...items];
+
+        // If returned less than pageSize, no more pages
+        if (items.length < state.pageSize) {
+          state.hasMore = false;
+        } else {
+          state.hasMore = true;
+        }
+      })
 }
 });
 
-export const {AddToCart, CountCart} = bookSlice.actions;
+export const {AddToCart, CountCart, resetBooksForQuery} = bookSlice.actions;
 export default bookSlice.reducer;
 
