@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { lazy, Suspense, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AddToCart, CountCart, fetchBooks } from '../slices/Books'
-import CartIcon from './CartIcon'
+// import CartIcon from './CartIcon'
 
+const CartIcon = lazy(() => import('./CartIcon'));
 const Books = () => {
     const dispatch = useDispatch()
     const book = useSelector((state) => state.books.books)
@@ -14,9 +15,13 @@ const Books = () => {
         
     }, [dispatch])
   return (
-    <div>
+      <div>
+        <Suspense fallback={<div className='text-center'>Loading...</div>}>
        <CartIcon />
+       </Suspense>
         {/* <h1>Books Component</h1> */}
+        <Suspense fallback={<div className='text-center'>Loading...</div>}>
+
         <div className='flex flex-wrap justify-between space-y-1'>
 
         {
@@ -32,6 +37,7 @@ const Books = () => {
                 ) )
             }
         </div>
+    </Suspense>
     </div>
   )
 }
