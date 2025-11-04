@@ -7,7 +7,7 @@ export const fetchBooks = createAsyncThunk(
   'books/fetchBooks',
   async (query) => {
     const res = await axios.get(
-      `https://www.googleapis.com/books/v1/volumes?q=wole&maxResults=10&key=AIzaSyAXVzoOrbcKnSAqhzXgQ78sPI0Y8PEkw48`
+      `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=10&key=AIzaSyAXVzoOrbcKnSAqhzXgQ78sPI0Y8PEkw48`
     )
     return  res.data.items;
 

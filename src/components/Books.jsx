@@ -10,7 +10,7 @@ const Books = () => {
     const cartCount = useSelector((state) => state.books.cartCount);
     
     useEffect(() => {
-        dispatch(fetchBooks('soyinka'))
+        dispatch(fetchBooks('a'))
         dispatch(CountCart());
         
     }, [dispatch])
