@@ -57,7 +57,7 @@ const Books = () => {
                 return(
                 <div ref={lastItemRef} key={book.id} className='p-3  w-1/4'>
                     <div className='p-3 border'>
-                        <h2 className='text-center font-bold text-lg'>{book.volumeInfo.title.substr(0,20)}</h2>
+                        <h2 className='text-center font-bold '>{book.volumeInfo.title.substr(0,50)}</h2>
                         <center style={{ maxHeight: '150px', overFlow: 'hidden' }}>
                             <img src={book.volumeInfo.imageLinks?.thumbnail} alt={book.volumeInfo.title} />
                         </center>
