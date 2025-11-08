@@ -1,16 +1,16 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const { createSlice } = require("@reduxjs/toolkit");
 
-const apiKey = process.env.API_KEY;
+const apiKey = import.meta.env.VITE_APP_API_KEY;
 export const fetchBooks = createAsyncThunk(
   'books/fetchBooks',
   async (query) => {
     const res = await axios.get(
-      `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=10&key=${apiKey}`
+      `https://www.googleapis.com/books/v1/volumes?q=wole&maxResults=10&key=AIzaSyAXVzoOrbcKnSAqhzXgQ78sPI0Y8PEkw48`
     )
-    return res.data.items // array of books
+    return  res.data.items;
+
   }
 )
 
