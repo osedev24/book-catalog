@@ -5,6 +5,7 @@ import FeaturesSection from "../FeaturesSection.jsx";
 import RecommendedSection from "../RecommendedSection.jsx";
 import ContactSection from "../ContactSection.jsx";
 import _Footer_new from "../_Footer_new.jsx";
+import Books from "../Books.jsx";
 function LandingPage() {
   return (
     <div className="min-h-screen bg-white">
@@ -13,6 +14,7 @@ function LandingPage() {
       <FeaturesSection />
       <RecommendedSection />
       <ContactSection />
+      <Books />
       <_Footer_new/>
       
     </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import CartIcon from "./CartIcon";
 
 export default function Navbar() {
   const { pathname } = useLocation();
@@ -29,6 +30,7 @@ export default function Navbar() {
             Catalog
           </Link>
         </nav>
+        <CartIcon />
       </div>
     </header>
   );
