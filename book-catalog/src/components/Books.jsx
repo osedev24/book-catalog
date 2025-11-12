@@ -69,7 +69,7 @@ const Books = () => {
                     </div>
             </div>  */}
 
-                  <article ref={lastItemRef} key={book.id} className=" w-1/2 p-3 sm:w-full md:w-full ">
+                  <article ref={lastItemRef} key={book.id} className=" w-1/2 p-3 md:w-full ">
       <div  className="flex flex-col sm:flex-row border rounded-lg overflow-hidden transition-shadow duration-300 hover:shadow-lg bg-white">
         <div className="relative w-full sm:w-48 h-64 sm:h-full bg-gray-100">
           <img
