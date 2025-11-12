@@ -2,17 +2,25 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar';
 import Footer from './_Footer_new';
+import { useDispatch, useSelector } from 'react-redux';
+import { RemoveFromCart } from '../slices/Books';
 
 const Cart = () => {
   const cart = localStorage.getItem('booksCart') ? JSON.parse(localStorage.getItem('booksCart')) : [];
   const [cartBooks, setcartBooks] = useState([])
   const [imageError, setImageError] = useState(false);
   
-  const RemoveFromCart = (id) => {
+  const RemoveCartItem = (id) => {
       const updatedCart = cart.filter((item) => item.id !== id);
       localStorage.setItem('booksCart', JSON.stringify(updatedCart));
       setcartBooks(cartBooks.filter((book) => book.id !== id));
-  }
+      
+  } 
+  const dispatch = useDispatch();
+  // const RemoveFromCart = (id) => {
+  //     dispatch({type: 'books/RemoveFromCart', payload: id});
+      
+  // }
   const fetchCartBooks = async () => {
     const results = await Promise.all(
         cart.map(async (item) => {
@@ -76,7 +84,7 @@ const Cart = () => {
                     
                     <div className="flex items-center justify-between mt-auto">
                       Published in <b>{book.volumeInfo.publishedDate}</b>
-                      <button  onClick={()=>{RemoveFromCart(book.id)}} className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors duration-200 flex items-center gap-2">
+                      <button  onClick={()=>{dispatch(RemoveFromCart(book.id)), RemoveCartItem(book.id)}} className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors duration-200 flex items-center gap-2">
                         
                         <i className="fas fa-minus"></i> Remove
                       </button>

@@ -39,8 +39,15 @@ const bookSlice = createSlice({
           Cart.push({'id': action.payload}); 
           localStorage.setItem('booksCart', JSON.stringify(Cart));
           state.cart = Cart;
-          state.cartCount = Cart.length;
+          state.cartCount = Cart.length; 
           alert('Book added to cart');
+      },
+      RemoveFromCart: (state, action) => {
+          const Cart = localStorage.getItem('booksCart') ? JSON.parse(localStorage.getItem('booksCart')) : [];
+          const updatedCart = Cart.filter((item) => item.id !== action.payload); 
+          localStorage.setItem('booksCart', JSON.stringify(updatedCart));
+          state.cart = updatedCart;
+          state.cartCount = updatedCart.length; 
       },
       CountCart: (state, action) => {
           const Cart = localStorage.getItem('booksCart') ? JSON.parse(localStorage.getItem('booksCart')) : [];
@@ -71,6 +78,6 @@ const bookSlice = createSlice({
 }
 });
 
-export const {AddToCart, CountCart, resetBooksForQuery} = bookSlice.actions;
+export const {AddToCart, CountCart, resetBooksForQuery, RemoveFromCart} = bookSlice.actions;
 export default bookSlice.reducer;
 

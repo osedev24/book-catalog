@@ -1,8 +1,8 @@
 import React from "react";
 import { Routes, Route, createBrowserRouter, RouterProvider } from "react-router-dom";
 import LandingPage from "./components/pages/LandingPage";
-import CatalogPage from "./components/pages/CatalogPage";
 import Cart from "./components/Cart";
+import CatalogPage from "./components/pages/CatalogPage";
 
 export default function App() {
    const router = createBrowserRouter([
@@ -15,4 +15,5 @@ export default function App() {
       <RouterProvider router={router} ></RouterProvider>
     </>
   );
+
 }
