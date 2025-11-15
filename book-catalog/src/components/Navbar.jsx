@@ -27,7 +27,7 @@ export default function Navbar() {
             </>
           ) : null}
           <Link to="/catalog" className="hover:text-indigo-600">
-            Catalog
+           Search Catalog
           </Link>
           <Link to="/filter" className="hover:text-indigo-600">
             Filter
