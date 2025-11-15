@@ -29,6 +29,9 @@ export default function Navbar() {
           <Link to="/catalog" className="hover:text-indigo-600">
             Catalog
           </Link>
+          <Link to="/filter" className="hover:text-indigo-600">
+            Filter
+          </Link>
         </nav>
         <CartIcon />
       </div>
